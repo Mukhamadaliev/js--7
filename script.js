@@ -43,7 +43,7 @@ modal2.querySelector("form").addEventListener("submit", (e) => {
   modal2.style.display = "none";
 });
 
-// ? Email 
+// Email 
 document.getElementById("mainForm").addEventListener("submit", function (e) {
   let email = document.getElementById("emailInput").value.trim().toLowerCase();
   let errorMessage = document.getElementById("errorMessage");
