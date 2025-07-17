@@ -2,25 +2,33 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
 :root {
-  --blue: #2563eb;
-  --white: #fff;
-  --black: #000;
+  --primary-color: #2563eb;
+  --white: #ffffff;
+  --black: #000000;
+  --gray-light: #f4f4f4;
+  --gray-dark: #1e1e1e;
+  --dark-bg: #121212;
+  --error-color: #ff0000;
+  --link-color: #2563eb;
 }
 
 body {
-  font-family: sans-serif;
-  background-color: #f4f4f4;
-  color: #000;
+  background-color: var(--gray-light);
+  color: var(--black);
+  line-height: 1.6;
+  min-height: 100vh;
 }
 
 body.dark-mode {
-  background-color: #121212;
-  color: white;
+  background-color: var(--dark-bg);
+  color: var(--white);
 }
 
+/* Container styles */
 .container {
   min-height: 100vh;
   display: flex;
@@ -30,36 +38,43 @@ body.dark-mode {
   padding: 20px;
 }
 
+/* Theme toggle buttons */
 .theme-toggle {
   margin-bottom: 20px;
+  display: flex;
+  gap: 10px;
 }
 
 .btn-white,
 .btn-black {
   padding: 10px 20px;
-  margin: 5px;
   border: none;
-  cursor: pointer;
   border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 .btn-white {
-  background-color: white;
-  color: black;
-  border: 1px solid #ccc;
+  background-color: var(--white);
+  color: var(--black);
+  border: 1px solid #ddd;
 }
 
 .btn-black {
-  background-color: black;
-  color: white;
+  background-color: var(--black);
+  color: var(--white);
 }
 
+/* Content layout */
 .content {
   display: flex;
   flex-wrap: wrap;
   gap: 40px;
   justify-content: center;
   align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .image-box img {
@@ -67,45 +82,75 @@ body.dark-mode {
   height: 300px;
   object-fit: cover;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.btn-1 {
+  background-color: var(--primary-color);
+  color: var(--white);
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+/* Form styles */
 .form-box {
-  background-color: #f9f9f9;
-  padding: 25px;
+  background-color: var(--white);
+  padding: 30px;
   border-radius: 10px;
   width: 350px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-body.dark-mode .form-box,
-body.dark-mode .modal-content {
-  background-color: #1e1e1e;
-  color: white;
+body.dark-mode .form-box {
+  background-color: var(--gray-dark);
+  color: var(--white);
 }
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 input,
+textarea,
 button {
-  padding: 10px;
+  padding: 12px;
   border-radius: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
   outline: none;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
 }
 
 button {
-  background-color: var(--blue);
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--white);
   border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 button:hover {
   background-color: #1d4ed8;
+  transform: translateY(-2px);
 }
 
+/* Modal styles */
 .modal {
   display: none;
   position: fixed;
@@ -120,56 +165,57 @@ button:hover {
 }
 
 .modal-content {
-  background-color: white;
-  padding: 20px;
+  background-color: var(--white);
+  padding: 25px;
   border-radius: 10px;
   width: 90%;
   max-width: 400px;
   position: relative;
+  animation: fadeIn 0.3s ease-out;
 }
 
-.modal-content-enter {
-  background-color: white;
+body.dark-mode .modal-content {
+  background-color: var(--gray-dark);
+  color: var(--white);
 }
 
 .closeBtn {
   position: absolute;
   right: 15px;
-  top: 10px;
+  top: 15px;
   font-size: 24px;
   cursor: pointer;
+  color: #777;
+  transition: all 0.3s ease;
 }
 
-.modal-enter-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  padding-top: 50px;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
+.closeBtn:hover {
+  color: var(--primary-color);
 }
 
-span {
-  color: blue;
-  transition: all 0.4s ease;
-  padding-top: 10px;
-  padding-bottom: 10px;
+/* Link styles */
+.modal-trigger {
+  color: var(--link-color);
   cursor: pointer;
+  text-align: center;
+  display: block;
+  /* margin: 10px 0; */
+  transition: all 0.3s ease;
 }
 
-span:hover {
+.modal-trigger:hover {
   text-decoration: underline;
 }
 
+/* Error message */
 .error-message {
-  color: red;
+  color: var(--error-color);
   font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
-/* Main content styles */
+/* Main content */
 #main-content {
   display: none;
   text-align: center;
@@ -180,26 +226,24 @@ span:hover {
   justify-content: center;
 }
 
-#main-content h1 {
-  margin-bottom: 20px;
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-#main-content form {
-  width: 350px;
-  background-color: #f9f9f9;
-  padding: 25px;
-  border-radius: 10px;
-}
-
-body.dark-mode #main-content form {
-  background-color: #1e1e1e;
-}
-
-/* Media Queries for Responsive Design */
-@media only screen and (max-width: 768px) {
+/* Responsive design */
+@media (max-width: 768px) {
   .content {
     flex-direction: column;
-    gap: 20px;
+    gap: 30px;
   }
 
   .image-box img {
@@ -211,21 +255,11 @@ body.dark-mode #main-content form {
     width: 100%;
     max-width: 350px;
   }
-
-  #main-content form {
-    width: 100%;
-    max-width: 350px;
-  }
-
-  .modal-content {
-    width: 95%;
-    padding: 15px;
-  }
 }
 
-@media only screen and (max-width: 480px) {
+@media (max-width: 480px) {
   .container {
-    padding: 10px;
+    padding: 15px;
   }
 
   .image-box img {
@@ -233,58 +267,16 @@ body.dark-mode #main-content form {
     height: 200px;
   }
 
-  .form-box,
-  #main-content form {
-    padding: 15px;
-  }
-
-  .btn-white,
-  .btn-black {
-    padding: 8px 15px;
-    font-size: 14px;
+  .form-box {
+    padding: 20px;
   }
 
   input,
   button {
-    padding: 8px;
-    font-size: 14px;
+    padding: 10px;
   }
 
   .modal-content {
-    width: 95%;
-    padding: 15px;
-  }
-
-  .closeBtn {
-    font-size: 20px;
-    right: 10px;
-    top: 5px;
-  }
-}
-
-@media only screen and (max-width: 360px) {
-  .image-box img {
-    width: 180px;
-    height: 180px;
-  }
-
-  .form-box,
-  #main-content form {
-    padding: 12px;
-  }
-
-  .btn-white,
-  .btn-black {
-    padding: 6px 12px;
-  }
-
-  input,
-  button {
-    padding: 6px;
-    font-size: 13px;
-  }
-
-  span {
-    font-size: 14px;
+    padding: 20px;
   }
 }

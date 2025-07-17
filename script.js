@@ -1,3 +1,4 @@
+// ~ white va black rejimlarni almashtirish
 document.querySelector(".btn-black").addEventListener("click", () => {
   document.body.classList.add("dark-mode");
 });
@@ -6,11 +7,12 @@ document.querySelector(".btn-white").addEventListener("click", () => {
   document.body.classList.remove("dark-mode");
 });
 
+// ? Saqlangan ma'lumotlar
 let savedName = "ibrohim";
 let savedNumber = "12345";
 let savedPassword = "1234";
 
-// * Form elements
+// Form elementlari
 let nameInput = document.querySelector(".name");
 let numberInput = document.querySelector(".number");
 let passwordInput = document.querySelector(".password");
@@ -18,41 +20,27 @@ let startBtn = document.querySelector(".start_btn");
 let loginContainer = document.getElementById("login-container");
 let mainContent = document.getElementById("main-content");
 
-// ^ Modal 1: Password 
-let modal1 = document.getElementById("myModal");
+// ! Modal elementlari
+let loginModal = document.getElementById("loginModal");
 let openModalBtn = document.getElementById("openModal");
-let closeModal1Btn = modal1.querySelector(".closeBtn");
+let closeModalBtn = loginModal.querySelector(".closeBtn");
 
+// ^ Modalni ochish
 openModalBtn.addEventListener("click", () => {
-  modal1.style.display = "flex";
+  loginModal.style.display = "flex";
+  // Formani to'ldirish
+  let inputs = loginModal.querySelectorAll("input");
+  inputs[0].value = savedName;
+  inputs[1].value = savedNumber;
+  inputs[2].value = savedPassword;
 });
 
-closeModal1Btn.addEventListener("click", () => {
-  modal1.style.display = "none";
+// ^ Modalni yopish
+closeModalBtn.addEventListener("click", () => {
+  loginModal.style.display = "none";
 });
 
-// & Modal 2: Login
-let modal2 = document.getElementById("modalEnter");
-let closeModal2Btn = modal2.querySelector(".closeBtn");
-
-closeModal2Btn.addEventListener("click", () => {
-  modal2.style.display = "none";
-});
-
-// ~ Kirish modal
-let kirishModal = document.getElementById("kirishModal");
-let kirishBtn = document.getElementById("kirishBtn");
-let closeKirishModal = document.getElementById("closeKirishModal");
-
-kirishBtn.addEventListener("click", () => {
-  kirishModal.style.display = "flex";
-});
-
-closeKirishModal.addEventListener("click", () => {
-  kirishModal.style.display = "none";
-});
-
-// ! Enter button click 
+// & Kirish tugmasi bosilganda
 startBtn.addEventListener("click", () => {
   let name = nameInput.value.trim();
   let number = numberInput.value.trim();
@@ -71,11 +59,11 @@ startBtn.addEventListener("click", () => {
   }
 });
 
-// ?  Modal 1: Password change form
-modal1.querySelector("form").addEventListener("submit", function (e) {
+// ! Login modal formasi
+document.getElementById("loginForm").addEventListener("submit", function (e) {
   e.preventDefault();
 
-  let inputs = modal1.querySelectorAll("input");
+  let inputs = this.querySelectorAll("input");
   let newName = inputs[0].value.trim();
   let newNumber = inputs[1].value.trim();
   let newPassword = inputs[2].value.trim();
@@ -90,19 +78,45 @@ modal1.querySelector("form").addEventListener("submit", function (e) {
   savedPassword = newPassword;
 
   alert("Ma'lumotlar o'zgartirildi!");
-  modal1.style.display = "none";
+  loginModal.style.display = "none";
 });
 
-// ? Modal 2: Login form
-modal2.querySelector("form").addEventListener("submit", function (e) {
-  e.preventDefault();
-  alert("Saytga muvaffaqiyatli kirdingiz!");
-  modal2.style.display = "none";
-});
-
-// ? Close modals when clicking outside
+// ! Modalni tashqariga bosganda yopish
 window.addEventListener("click", function (e) {
-  if (e.target === modal1) modal1.style.display = "none";
-  if (e.target === modal2) modal2.style.display = "none";
-  if (e.target === kirishModal) kirishModal.style.display = "none";
+  if (e.target === loginModal) loginModal.style.display = "none";
+});
+
+// ! Form va natija modallari
+let modalEnter = document.getElementById("modalEnterComment");
+let resultModal = document.getElementById("resultModal");
+let kirishBtn = document.getElementById("kirishBtn");
+let closeFormBtn = modalEnter.querySelector(".closeBtn");
+let closeResultBtn = resultModal.querySelector(".closeBtn");
+
+kirishBtn.addEventListener("click", () => {
+  modalEnter.style.display = "block";
+});
+
+closeFormBtn.addEventListener("click", () => {
+  modalEnter.style.display = "none";
+});
+
+closeResultBtn.addEventListener("click", () => {
+  resultModal.style.display = "none";
+});
+
+document.getElementById("myForm").addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  document.getElementById("resultName").textContent = document.getElementById("nameInput").value;
+  document.getElementById("resultNumber").textContent = document.getElementById("numberInput").value;
+  document.getElementById("resultComment").textContent = document.getElementById("commentInput").value;
+
+  modalEnter.style.display = "none";
+  resultModal.style.display = "block";
+});
+
+window.addEventListener("click", function (event) {
+  if (event.target === modalEnter) modalEnter.style.display = "none";
+  if (event.target === resultModal) resultModal.style.display = "none";
 });

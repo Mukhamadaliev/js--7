@@ -9,9 +9,9 @@
 </head>
 
 <body>
-  <!-- ? Login Container (initially visible) -->
+  <!--& Login Container (dastlab ko'rinadi) -->
   <div id="login-container" class="container">
-    <!-- ^  White va Black rejim -->
+    <!--^ White va Black rejim -->
     <div class="theme-toggle">
       <button class="btn-white">White</button>
       <button class="btn-black">Black</button>
@@ -36,50 +36,47 @@
     </div>
   </div>
 
-  <!-- ! Main Content (initially hidden) -->
+  <!--! Main Content (dastlab yashirin) -->
   <div id="main-content">
-    <h1>Content</h1>
-    <form action="">
-      <input type="text" placeholder="Name" required>
-      <input type="text" placeholder="Number" required>
-      <input type="password" placeholder="Password" required>
-      <button type="button" class="btn-1" id="kirishBtn">Kirish</button>
-    </form>
+    <button type="button" class="btn-1" id="kirishBtn">open modal</button>
   </div>
 
-  <!-- ~ Modal 1: Parolni o'zgartirish -->
-  <div id="myModal" class="modal">
+  <!--? Soddalashtirilgan Login va Parol Modal -->
+  <div id="loginModal" class="modal">
     <div class="modal-content">
-      <span class="closeBtn" data-modal="myModal">&times;</span>
-      <p>Login va parolni o'zgartirish</p><br><br>
-      <form>
+      <span class="closeBtn">&times;</span>
+      <h2>Login va Parol</h2>
+      <form id="loginForm">
         <input type="text" placeholder="Name" required />
         <input type="text" placeholder="Number" required />
         <input type="password" placeholder="Password" required />
-        <button type="submit" class="btn-1">Edit and Save</button>
+        <button type="submit">Saqlash</button>
       </form>
     </div>
   </div>
 
-  <!-- * Modal 2: Kirish -->
-  <div class="modal-enter-modal" id="modalEnter">
-    <div class="modal-content modal-content-enter">
-      <span class="closeBtn" data-modal="modalEnter">&times;</span>
-      <h2>Xush kelibsiz!</h2><br><br>
-      <form class="modal-enter-form">
-        <input type="text" placeholder="Login" required />
-        <input type="password" placeholder="Parol" required />
-        <button type="submit">Kirish</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- & New Modal for Kirish button -->
-  <div id="kirishModal" class="modal">
+  <!--? Form Modal -->
+  <div id="modalEnterComment" class="modal">
     <div class="modal-content">
-      <span class="closeBtn" id="closeKirishModal">&times;</span>
-      <h2>Kirish muvaffaqiyatli!</h2><br>
-      <p>Siz muvaffaqiyatli kirdingiz!</p>
+      <span class="closeBtn">&times;</span>
+      <h2>Comments</h2>
+      <form id="myForm">
+        <input type="text" id="nameInput" placeholder="Name" required />
+        <input type="text" id="numberInput" placeholder="Number" required />
+        <textarea id="commentInput" placeholder="Comment" required></textarea>
+        <button type="submit">Enter</button>
+      </form>
+    </div>
+  </div>
+
+  <!--? Result Modal -->
+  <div id="resultModal" class="modal">
+    <div class="modal-content">
+      <span class="closeBtn">&times;</span>
+      <h2>Natija:</h2>
+      <p><strong>Name:</strong> <span id="resultName"></span></p>
+      <p><strong>Number:</strong> <span id="resultNumber"></span></p>
+      <p><strong>Comment:</strong> <span id="resultComment"></span></p>
     </div>
   </div>
 
